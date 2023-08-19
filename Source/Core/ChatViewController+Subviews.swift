@@ -73,7 +73,7 @@ extension ChatViewController {
             _ = chatBarView.textView.resignFirstResponder()
             currentKeyboardType = .none
         case .image:
-            animateHideImagePicker()
+            //animateHideImagePicker()
             currentKeyboardType = .none
         default:
             break
@@ -92,7 +92,7 @@ extension ChatViewController {
         case .image:
             chatBarView.textView.becomeFirstResponderTimeAnimate = 0
             currentKeyboardType = .default
-            imagePickerView?.isHidden = true
+            //imagePickerView?.isHidden = true
         default:
             break
         }
@@ -169,6 +169,8 @@ extension ChatViewController {
 }
 
 /// ImagePickerView
+///
+/*
 extension ChatViewController {
 
     /// Setup for ImagePicker
@@ -251,7 +253,7 @@ extension ChatViewController {
         })
     }
 }
-
+*/
 
 /// TypingIndicator
 extension ChatViewController {

@@ -152,9 +152,9 @@ extension ChatViewController {
         }
 
         // Everytime keyboard show. We will check keyboard height change or not to update image picker view size
-        if isShowing && configuration.imagePickerType != .actionSheet {
+        /*if isShowing && configuration.imagePickerType != .actionSheet {
             updateHeightForImagePicker(keyboardHeight: heightOffset)
-        }
+        }*/
 
         UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
             self.chatBarBottomConstraint?.constant = -heightOffset

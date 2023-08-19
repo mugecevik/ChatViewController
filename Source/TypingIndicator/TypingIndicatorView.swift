@@ -40,6 +40,14 @@ public class TypingIndicatorView: UIView {
 
     private var users: [Userable] = []
     private var labelConstraintSet: LayoutConstraintSet?
+    
+    private var attributedString_Smarty: NSAttributedString? {
+        let fontSize = textFont.pointSize
+        let attributedString = NSMutableAttributedString()
+                .normal(NSLocalizedString("Smarty is typing", comment: ""), fontSize: fontSize, textColor: textColor)
+        
+        return attributedString
+    }
 
     private var attributedString: NSAttributedString? {
         var attributedString: NSMutableAttributedString?
@@ -90,7 +98,7 @@ public class TypingIndicatorView: UIView {
         if users.contains(where: { $0.idNumber == user.idNumber }) { return }
 
         users.append(user)
-        textLabel.attributedText = attributedString
+        textLabel.attributedText = attributedString_Smarty
         isVisible = true
     }
 
@@ -103,7 +111,7 @@ public class TypingIndicatorView: UIView {
         users.remove(at: index)
 
         if users.count > 0 {
-            textLabel.attributedText = attributedString
+            textLabel.attributedText = attributedString_Smarty
         } else {
             isVisible = false
         }

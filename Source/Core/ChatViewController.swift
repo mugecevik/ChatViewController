@@ -377,8 +377,9 @@ extension ChatViewController {
         chatBarView.leftStackView.isHidden = true
         chatBarView.rightStackView.isHidden = true
 
-        let items = [.flexibleSpace, chatBarView.galleryButton, chatBarView.sendButton]
-        chatBarView.bottomStackView.spacing = 16
+        let items = [.flexibleSpace, /*chatBarView.galleryButton,*/ chatBarView.sendButton]
+        //chatBarView.bottomStackView.spacing = 16
+        chatBarView.bottomStackView.spacing = 0
         chatBarView.setStackViewItems(items, forStack: .bottom, animated: true)
     }
 

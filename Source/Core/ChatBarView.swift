@@ -53,11 +53,11 @@ public class ChatBarView: UIView {
 
     public var galleryButton: ChatButton = {
         let galleryButton = ChatButton()
-        galleryButton.isEnabled = true
-        var image = UIImage(named: "ic_gallery", in: Bundle.chatBundle, compatibleWith: nil)
+        galleryButton.isEnabled = false
+        /*var image = UIImage(named: "ic_gallery", in: Bundle.chatBundle, compatibleWith: nil)
         let tempImage = image!.withRenderingMode(.alwaysTemplate)
         image = tempImage
-        galleryButton.image = image
+        galleryButton.image = image*/
         galleryButton.tintColor = UIColor.gray
         return galleryButton
     }()

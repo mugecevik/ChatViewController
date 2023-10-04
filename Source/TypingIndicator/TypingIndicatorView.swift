@@ -44,7 +44,7 @@ public class TypingIndicatorView: UIView {
     private var attributedString_Smarty: NSAttributedString? {
         let fontSize = textFont.pointSize
         let attributedString = NSMutableAttributedString()
-                .normal(NSLocalizedString("Smarty is typing", comment: ""), fontSize: fontSize, textColor: textColor)
+                .normal(NSLocalizedString("Nimbo is typing", comment: ""), fontSize: fontSize, textColor: textColor)
         
         return attributedString
     }

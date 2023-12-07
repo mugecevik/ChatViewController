@@ -29,7 +29,7 @@ public class ImagePickerHelper: NSObject, ImagePickerHelperable, UIImagePickerCo
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
         imagePicker.sourceType = sourceType
-        imagePicker.mediaTypes = [kUTTypeImage as String, kUTTypeMovie as String]
+        imagePicker.mediaTypes = [kUTTypeImage as String]
 
         parentViewController?.present(imagePicker, animated: true, completion: nil)
     }

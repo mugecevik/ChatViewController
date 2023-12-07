@@ -41,13 +41,6 @@ public final class ImagePickerCollectionCell: UICollectionViewCell {
         videoDurationLabel.isHidden = true
     }
 
-    public override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        iconVideo.isHidden = true
-        videoDurationLabel.isHidden = true
-    }
-
     public func bindVideoDuration(duration: Double) {
         iconVideo.isHidden = false
         videoDurationLabel.isHidden = false

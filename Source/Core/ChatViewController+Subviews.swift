@@ -252,7 +252,7 @@ extension ChatViewController {
         })
     }
 }
-*/
+
 
 /// TypingIndicator
 extension ChatViewController {

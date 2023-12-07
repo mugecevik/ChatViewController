@@ -65,7 +65,7 @@ public class ImagePickerHelper: NSObject, ImagePickerHelperable, UIImagePickerCo
                 return
             }
             if #available(iOS 11.0, *) {
-                guard let imagePath = info[UIImagePickerController.InfoKey.imageURL] as? String else {
+                guard let imagePath = info[UIImagePickerController.InfoKey.mediaURL] as? String else {
                     return
                 }
                 delegate?.didSelectImage?(url: URL(string: imagePath))

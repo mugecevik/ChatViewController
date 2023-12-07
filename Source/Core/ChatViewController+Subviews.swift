@@ -73,7 +73,7 @@ extension ChatViewController {
             _ = chatBarView.textView.resignFirstResponder()
             currentKeyboardType = .none
         case .image:
-            //animateHideImagePicker()
+            animateHideImagePicker()
             currentKeyboardType = .none
         default:
             break
@@ -92,7 +92,7 @@ extension ChatViewController {
         case .image:
             chatBarView.textView.becomeFirstResponderTimeAnimate = 0
             currentKeyboardType = .default
-            //imagePickerView?.isHidden = true
+            imagePickerView?.isHidden = true
         default:
             break
         }
@@ -120,7 +120,7 @@ extension ChatViewController {
     /// Show keyboard from nothing
     // Handle keyboard show/hide notification to animation show ChatBarView
     func animateKeyboard(notification: Notification, isShowing: Bool) {
-        var userInfo = notification.userInfo!
+        let userInfo = notification.userInfo!
         let keyboardRect = (userInfo[UIResponder.keyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue
         let curve = (userInfo[UIResponder.keyboardAnimationCurveUserInfoKey]! as AnyObject).uint32Value
 
@@ -152,9 +152,9 @@ extension ChatViewController {
         }
 
         // Everytime keyboard show. We will check keyboard height change or not to update image picker view size
-        /*if isShowing && configuration.imagePickerType != .actionSheet {
+        if isShowing && configuration.imagePickerType != .actionSheet {
             updateHeightForImagePicker(keyboardHeight: heightOffset)
-        }*/
+        }
 
         UIView.animate(withDuration: duration!, delay: 0, options: options, animations: {
             self.chatBarBottomConstraint?.constant = -heightOffset
@@ -169,8 +169,6 @@ extension ChatViewController {
 }
 
 /// ImagePickerView
-///
-/*
 extension ChatViewController {
 
     /// Setup for ImagePicker
@@ -233,6 +231,7 @@ extension ChatViewController {
         tableView.stopScrolling()
         imagePickerView?.isHidden = false
         imagePickerView?.collectionView.resetUI()
+        imagePickerView?.collectionView.requestPHAuthorization()
 
         UIView.animate(withDuration: 0.25, delay: 0, options: UIView.AnimationOptions(), animations: {
             self.chatBarBottomConstraint.constant = -self.customKeyboardHeight

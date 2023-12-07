@@ -14,7 +14,7 @@ public enum KeyboardType {
     case none
 }
 
-open class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
+open class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, ImagePickerResultDelegate {
 
     open var minimumChatBarHeight: CGFloat = 50
     open var customKeyboardHeight: CGFloat = 0
@@ -73,7 +73,7 @@ open class ChatViewController: UIViewController, UITableViewDataSource, UITableV
     /// ChatBarView
     open var chatBarView: ChatBarView!
     /// ImagePickerView
-    //public var imagePickerView: ImagePickerView?
+    public var imagePickerView: ImagePickerView?
 
     /// Bottom constraint of UITableView and TypingIdicator
     public var tableViewBottomConstraint: NSLayoutConstraint!
@@ -82,9 +82,9 @@ open class ChatViewController: UIViewController, UITableViewDataSource, UITableV
     /// Height constraint for ChatBarView
     public var chatBarHeightConstraint: NSLayoutConstraint!
     /// Top contraint between ChatImagePicker and ChatBarView.bottomAnchor
-    //public var imagePickerTopContraint: NSLayoutConstraint?
+    public var imagePickerTopContraint: NSLayoutConstraint?
     /// Height contraint of ImagePickerView
-    //public var imagePickerHeightContraint: NSLayoutConstraint?
+    public var imagePickerHeightContraint: NSLayoutConstraint?
     /// Observe `isVisible` key for TypingIndicatorView
     public var observation: NSKeyValueObservation?
     /// TypingIndicator height contraint
@@ -118,18 +118,18 @@ open class ChatViewController: UIViewController, UITableViewDataSource, UITableV
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        //imagePickerHeightContraint?.constant = customKeyboardHeight
-        //imagePickerView?.collectionView.updateUI()
+        imagePickerHeightContraint?.constant = customKeyboardHeight
+        imagePickerView?.collectionView.updateUI()
     }
 
     open func setupSubviews() {
         setupChatBar()
         setupTypingIndicator()
         initTableView()
-        /*
+        
         if configuration.imagePickerType != .actionSheet {
             initImagePickerView()
-        }*/
+        }
     }
 
     /// Setup for ChatBarView
@@ -190,7 +190,6 @@ open class ChatViewController: UIViewController, UITableViewDataSource, UITableV
         controlExpandableInputView(showExpandable: true, from: 0, to: 0)
     }
     
-    /*
     /// Gallery button
     @objc open func didPressGalleryButton(_ sender: Any?) {
         switch currentKeyboardType {
@@ -209,7 +208,7 @@ open class ChatViewController: UIViewController, UITableViewDataSource, UITableV
         default:
             break
         }
-    }*/
+    }
     
     /// Set hide/show for ChatBarView
     open func setChatBarHidden(_ hidden: Bool, animated: Bool) {
@@ -372,14 +371,13 @@ extension ChatViewController {
         }
 
         chatBarView.sendButton.addTarget(self, action: #selector(didPressSendButton(_:)), for: .touchUpInside)
-        //chatBarView.galleryButton.addTarget(self, action: #selector(didPressGalleryButton(_:)), for: .touchUpInside)
+        chatBarView.galleryButton.addTarget(self, action: #selector(didPressGalleryButton(_:)), for: .touchUpInside)
         chatBarView.bottomStackView.isHidden = false
         chatBarView.leftStackView.isHidden = true
         chatBarView.rightStackView.isHidden = true
 
-        let items = [.flexibleSpace, /*chatBarView.galleryButton,*/ chatBarView.sendButton]
-        //chatBarView.bottomStackView.spacing = 16
-        chatBarView.bottomStackView.spacing = 0
+        let items = [.flexibleSpace, chatBarView.galleryButton, chatBarView.sendButton]
+        chatBarView.bottomStackView.spacing = 16
         chatBarView.setStackViewItems(items, forStack: .bottom, animated: true)
     }
 
@@ -425,10 +423,9 @@ extension ChatViewController {
         }
 
         chatBarView.sendButton.addTarget(self, action: #selector(didPressSendButton(_:)), for: .touchUpInside)
-        
-        //chatBarView.galleryButton.addTarget(self, action: #selector(didPressGalleryButton(_:)), for: .touchUpInside)
+        chatBarView.galleryButton.addTarget(self, action: #selector(didPressGalleryButton(_:)), for: .touchUpInside)
 
-        //chatBarView.setStackViewItems([chatBarView.galleryButton], forStack: .left, animated: false)
+        chatBarView.setStackViewItems([chatBarView.galleryButton], forStack: .left, animated: false)
         chatBarView.setStackViewItems([chatBarView.sendButton], forStack: .right, animated: false)
     }
 }

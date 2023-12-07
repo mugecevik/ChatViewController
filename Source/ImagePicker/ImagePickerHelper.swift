@@ -37,14 +37,14 @@ public class ImagePickerHelper: NSObject, ImagePickerHelperable, UIImagePickerCo
     /// Show Action Sheet to select
     public func takeOrChoosePhoto() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "") , style: .cancel))
         
-        let takePhoto = UIAlertAction(title: "Take Photo", style: .default) { [weak self] _ in
+        let takePhoto = UIAlertAction(title: NSLocalizedString("Take Photo", comment: "") , style: .default) { [weak self] _ in
             self?.accessCamera()
         }
         alert.addAction(takePhoto)
         
-        let choosePhoto = UIAlertAction(title: "Choose Photo", style: .default) { [weak self] _ in
+        let choosePhoto = UIAlertAction(title: NSLocalizedString("Choose Photo", comment: ""), style: .default) { [weak self] _ in
             self?.accessLibrary()
         }
         alert.addAction(choosePhoto)
